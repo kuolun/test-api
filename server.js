@@ -4,6 +4,7 @@ var morgan         = require('morgan');
 var bodyParser     = require('body-parser');
 var methodOverride = require('method-override');
 var app            = express();
+var PORT           = process.env.PORT||8000; //for heroku
 
 app.use(express.static(__dirname + '/public')); 	// set the static files location /public/img will be /img for users
 app.use(morgan('dev')); 					// log every request to the console
@@ -79,5 +80,6 @@ app.use('/api', router);
 
 
 
-app.listen(8000);
-console.log('Open http://localhost:8000 to access the files now'); 			// shoutout to the user
+app.listen(PORT,function(){
+  console.log('Express server started on port:'+PORT+'!');      // shoutout to the user
+});
